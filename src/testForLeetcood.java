@@ -1,6 +1,7 @@
 //Задача Leetcode 929
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class testForLeetcood {
@@ -36,9 +37,14 @@ public class testForLeetcood {
                 .filter(s -> !s.equals("."))
                 .collect(Collectors.toCollection(ArrayList::new));
 
-        HashMap<Integer, String> result = new HashMap<>(){};
+        HashMap<Integer, String> result = new HashMap<>();
+
+        /*for (int i = 0; i < localName.size(); i++) {
+            result.put(i, localName.get(i) + domainName.get(i).toString());
+        }*/
 
         System.out.println(localName);
         System.out.println(domainName);
+        System.out.println(result);
     }
 }
