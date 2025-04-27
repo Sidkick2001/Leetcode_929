@@ -1,7 +1,6 @@
 //Задача Leetcode 929
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class testForLeetcood {
@@ -11,15 +10,15 @@ public class testForLeetcood {
     "testemail+david@lee.tcode.com"] */
 
     static public void numUniqueEmails(String[] emails) {
-        ArrayList<String> localName = new ArrayList<>();
-        ArrayList<String> domainName = new ArrayList<>();
+        StringBuilder localName = new StringBuilder();
+        StringBuilder domainName = new StringBuilder();
 
         for (int i = 0; i < emails.length; i++) {
             for (int j = 0; j < emails[i].length(); j++) {
                 if (emails[i].charAt(j) == '+') {
                     break;
                 } else {
-                    localName.add(String.valueOf(emails[i].charAt(j)));
+                    localName.append(emails[i].charAt(j));
                 }
             }
         }
@@ -27,24 +26,22 @@ public class testForLeetcood {
         for (int i = 0; i < emails.length; i++) {
             for (int j = 0; j < emails[i].length(); j++) {
                 if (emails[i].charAt(j) == '@') {
-                    domainName.add(emails[i].substring(j + 1));
+                    domainName.append(emails[i].substring(j + 1));
                     break;
                 }
             }
         }
 
-        localName = localName.stream()
-                .filter(s -> !s.equals("."))
-                .collect(Collectors.toCollection(ArrayList::new));
 
-        HashMap<Integer, String> result = new HashMap<>();
+        
 
-        /*for (int i = 0; i < localName.size(); i++) {
-            result.put(i, localName.get(i) + domainName.get(i).toString());
-        }*/
+        HashMap<Integer, String> result = new HashMap<>(); //toDo
+
+        int test = localName.indexOf("i"); //На подумать
+        System.out.println(test);
+
 
         System.out.println(localName);
         System.out.println(domainName);
-        System.out.println(result);
     }
 }
