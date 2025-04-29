@@ -1,7 +1,5 @@
 //Задача Leetcode 929
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class testForLeetcood {
 
@@ -9,16 +7,20 @@ public class testForLeetcood {
     "test.e.mail+bob.cathy@leetcode.com",
     "testemail+david@lee.tcode.com"] */
 
-    static public void numUniqueEmails(String[] emails) {
-        StringBuilder localName = new StringBuilder();
-        StringBuilder domainName = new StringBuilder();
+    static void numUniqueEmails(String[] emails) {
+        List<String> localName = new ArrayList<>();
+        List<String> domainName = new ArrayList<>();
+        HashSet<Object> result = new HashSet<>();
+
 
         for (int i = 0; i < emails.length; i++) {
             for (int j = 0; j < emails[i].length(); j++) {
                 if (emails[i].charAt(j) == '+') {
+                    localName.add(emails[i].substring(0, emails[i].indexOf('+')));
                     break;
-                } else {
-                    localName.append(emails[i].charAt(j));
+                }
+                else if (emails[i].charAt(j) == '@') {
+                    localName.add(emails[i].substring(0, emails[i].indexOf('@')));
                 }
             }
         }
@@ -26,22 +28,22 @@ public class testForLeetcood {
         for (int i = 0; i < emails.length; i++) {
             for (int j = 0; j < emails[i].length(); j++) {
                 if (emails[i].charAt(j) == '@') {
-                    domainName.append(emails[i].substring(j + 1));
+                    domainName.add(emails[i].substring(j));
                     break;
                 }
             }
         }
 
+        localName = localName.stream().map(s -> s.replace(".", "")).toList();
 
-        
-
-        HashMap<Integer, String> result = new HashMap<>(); //toDo
-
-        int test = localName.indexOf("i"); //На подумать
-        System.out.println(test);
-
+        for (int i = 0; i < emails.length; i++) {
+            result.add(localName.get(i) + domainName.get(i));
+        }
 
         System.out.println(localName);
         System.out.println(domainName);
+        System.out.println(result);
+        System.out.println(result.size());
+
     }
 }
